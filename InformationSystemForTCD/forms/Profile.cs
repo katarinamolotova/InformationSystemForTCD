@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InformationSystemForTCD.models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,15 +13,14 @@ namespace InformationSystemForTCD.forms
 {
     public partial class Profile : Form
     {
-        private int id;
-        private bool isAdmin;
-        public Profile(int id, bool isAdmin)
+        private Person person;
+        public Profile(Person person)
         {
             InitializeComponent();
             ProfileImage.Image = Image.FromFile(".\\..\\..\\..\\resources\\images\\profile.png");
-            this.id = id;
-            this.isAdmin = isAdmin;
-            ChangeVisible(isAdmin);
+            this.person = person;
+            ChangeVisible();
+            ShowInformations();
         }
 
         private void Exit_Click(object sender, EventArgs e)
@@ -34,9 +34,9 @@ namespace InformationSystemForTCD.forms
             form.Show();
         }
 
-        private void ChangeVisible(bool isAdmin)
+        private void ChangeVisible()
         {
-            if (isAdmin)
+            if (person is Employee)
             {
                 SurnameBox.Visible = false;
                 EmailBox.Visible = false;
@@ -49,6 +49,33 @@ namespace InformationSystemForTCD.forms
                 ClientsButton.Visible = false;
                 ServicesButton.Visible = false;
             }
+        }
+
+        private void ShowInformations()
+        {
+            LoginBox.Text = person.Login;
+            NameBox.Text = person.Name;
+            PasswordBox.Text = person.Password;
+            if (person is Client client)
+            {
+                SurnameBox.Text = client.Surname;
+                AddressBox.Text = client.Address;
+                EmailBox.Text = client.Email;
+                NumberBox.Text = client.Number;
+            }
+        }
+
+        private void ShowPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ShowPassword.Checked)
+                PasswordBox.PasswordChar = (char)0;
+            else
+                PasswordBox.PasswordChar = '•';
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

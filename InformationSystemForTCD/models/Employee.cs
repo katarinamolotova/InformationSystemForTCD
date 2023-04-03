@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace InformationSystemForTCD.models
 {
-    class Employee
+    class Employee : Person
     {
-        readonly ulong id;
-        String name;
-        String login;
-        String password;
+
     }
 }

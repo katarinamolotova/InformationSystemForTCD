@@ -6,15 +6,11 @@ using System.Threading.Tasks;
 
 namespace InformationSystemForTCD.models
 {
-    class Client
+    class Client : Person
     {
-        readonly ulong id;
-        String surname;
-        String name;
-        String address;
-        String number;
-        String email;
-        String login;
-        String password;
+        public String Surname { get; set; }
+        public String Address { get; set; }
+        public String Number { get; set; }
+        public String Email { get; set; }
     }
 }

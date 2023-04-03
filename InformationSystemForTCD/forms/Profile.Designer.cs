@@ -11,7 +11,7 @@ namespace InformationSystemForTCD.forms
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param Name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -39,6 +39,7 @@ namespace InformationSystemForTCD.forms
             this.SurnameBox = new System.Windows.Forms.TextBox();
             this.LoginBox = new System.Windows.Forms.TextBox();
             this.Actions = new System.Windows.Forms.GroupBox();
+            this.ShowPassword = new System.Windows.Forms.CheckBox();
             this.SaveButton = new System.Windows.Forms.Button();
             this.Exit = new System.Windows.Forms.Button();
             this.ServicesButton = new System.Windows.Forms.Button();
@@ -68,7 +69,7 @@ namespace InformationSystemForTCD.forms
             this.Information.Controls.Add(this.EmailBox);
             this.Information.Controls.Add(this.SurnameBox);
             this.Information.Controls.Add(this.LoginBox);
-            this.Information.Location = new System.Drawing.Point(10, 217);
+            this.Information.Location = new System.Drawing.Point(10, 212);
             this.Information.Name = "Information";
             this.Information.Size = new System.Drawing.Size(262, 270);
             this.Information.TabIndex = 1;
@@ -93,6 +94,7 @@ namespace InformationSystemForTCD.forms
             // 
             this.PasswordBox.Location = new System.Drawing.Point(22, 59);
             this.PasswordBox.Name = "PasswordBox";
+            this.PasswordBox.PasswordChar = '•';
             this.PasswordBox.Size = new System.Drawing.Size(218, 27);
             this.PasswordBox.TabIndex = 1;
             // 
@@ -126,18 +128,30 @@ namespace InformationSystemForTCD.forms
             // 
             // Actions
             // 
+            this.Actions.Controls.Add(this.ShowPassword);
             this.Actions.Controls.Add(this.SaveButton);
             this.Actions.Controls.Add(this.Exit);
             this.Actions.Controls.Add(this.ServicesButton);
             this.Actions.Controls.Add(this.ClientsButton);
             this.Actions.Controls.Add(this.ArchiveButton);
             this.Actions.Controls.Add(this.OrdersButton);
-            this.Actions.Location = new System.Drawing.Point(280, 217);
+            this.Actions.Location = new System.Drawing.Point(280, 212);
             this.Actions.Name = "Actions";
             this.Actions.Size = new System.Drawing.Size(262, 270);
             this.Actions.TabIndex = 2;
             this.Actions.TabStop = false;
             this.Actions.Text = "Действия";
+            // 
+            // ShowPassword
+            // 
+            this.ShowPassword.AutoSize = true;
+            this.ShowPassword.Location = new System.Drawing.Point(55, 161);
+            this.ShowPassword.Name = "ShowPassword";
+            this.ShowPassword.Size = new System.Drawing.Size(150, 24);
+            this.ShowPassword.TabIndex = 13;
+            this.ShowPassword.Text = "Показать пароль";
+            this.ShowPassword.UseVisualStyleBackColor = true;
+            this.ShowPassword.CheckedChanged += new System.EventHandler(this.ShowPassword_CheckedChanged);
             // 
             // SaveButton
             // 
@@ -148,6 +162,7 @@ namespace InformationSystemForTCD.forms
             this.SaveButton.TabIndex = 11;
             this.SaveButton.Text = "Сохранить изменения";
             this.SaveButton.UseVisualStyleBackColor = false;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // Exit
             // 
@@ -204,12 +219,15 @@ namespace InformationSystemForTCD.forms
             this.Controls.Add(this.Actions);
             this.Controls.Add(this.Information);
             this.Controls.Add(this.ProfileImage);
+            this.MaximumSize = new System.Drawing.Size(569, 544);
+            this.MinimumSize = new System.Drawing.Size(569, 544);
             this.Name = "Profile";
             this.Text = "Профиль";
             ((System.ComponentModel.ISupportInitialize)(this.ProfileImage)).EndInit();
             this.Information.ResumeLayout(false);
             this.Information.PerformLayout();
             this.Actions.ResumeLayout(false);
+            this.Actions.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -232,5 +250,6 @@ namespace InformationSystemForTCD.forms
         private System.Windows.Forms.Button ClientsButton;
         private System.Windows.Forms.Button ArchiveButton;
         private System.Windows.Forms.Button OrdersButton;
+        private System.Windows.Forms.CheckBox ShowPassword;
     }
 }

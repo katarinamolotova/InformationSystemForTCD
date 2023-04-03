@@ -8,10 +8,10 @@ namespace InformationSystemForTCD.repositories
 {
     interface IRepository<T>
     {
-        void Save(T model);
-        void Update(T model);
-        void Delete(T model);
-        T GetByIdu(ulong id);
-        List<T> GetAll();
+        public void Save(T model);
+        public void Update(T model);
+        public void Delete(T model);
+        public T GetById(int id);
+        public List<T> GetAll();
     }
 }

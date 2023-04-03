@@ -1,20 +1,16 @@
 ﻿using InformationSystemForTCD.forms;
-using MySql.Data.MySqlClient;
+using InformationSystemForTCD.models;
+using InformationSystemForTCD.repositories;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace InformationSystemForTCD
 {
     public partial class Authorization : Form
     {
-        DB db = new DB();
+        RepositoryEmployeeImpl repositoryEmployee = new RepositoryEmployeeImpl();
 
         public Authorization()
         {
@@ -30,20 +26,15 @@ namespace InformationSystemForTCD
         {
             String login = LoginBox.Text;
             String pass = PasswordBox.Text;
-            bool is_admin = true;
-            String query = $"select * from employee where login='{login}' and password='{pass}';";
-            
-            DataTable table = new DataTable();
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-            MySqlCommand command = new MySqlCommand(query, db.GetConnection());
 
-            adapter.SelectCommand = command;
-            adapter.Fill(table);
+            //  enter as client
+            List<Employee> employees = repositoryEmployee.GetAll()
+                .Where(employee => employee.Login == login && employee.Password == pass)
+                .ToList();
 
-            int id = (int)table.Rows[0][0];
-
-            if (table.Rows.Count > 0)
-                OpenNewWIndow(id, is_admin);
+            //  передать объект сотрудника или клиента
+            if (employees.Count > 0)
+                OpenNewWIndow(employees[0]);
             else
                 MessageBox.Show("Нет пользователя с такими данными! Убедитесь, что вы правильно ввели логин и пароль.", "Внимание!");
         }
@@ -56,10 +47,10 @@ namespace InformationSystemForTCD
                 PasswordBox.PasswordChar = '•';
         }
 
-        private void OpenNewWIndow(int id, bool is_admin)
+        private void OpenNewWIndow(Person person)
         {
             this.Hide();
-            Profile profile = new Profile(id, is_admin);
+            Profile profile = new Profile(person);
             profile.Show();
         }
     }
