@@ -1,4 +1,5 @@
 ﻿using InformationSystemForTCD.models;
+using InformationSystemForTCD.repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ namespace InformationSystemForTCD.forms
 {
     public partial class Profile : Form
     {
+        RepositoryEmployeeImpl repositoryEmployee = new RepositoryEmployeeImpl();
         private Person person;
         public Profile(Person person)
         {
@@ -75,7 +77,59 @@ namespace InformationSystemForTCD.forms
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            bool isChanged = (NameBox.Text != person.Name || LoginBox.Text != person.Login || PasswordBox.Text != person.Password);
+            if (isChanged)
+            {
+                try
+                {
 
+                    person.Name = NameBox.Text;
+                    person.Login = LoginBox.Text;
+                    person.Password = PasswordBox.Text;
+                    repositoryEmployee.Update(person as Employee);
+                    MessageBox.Show("Данные успешно изменены", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //  client
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Изменять нечего", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void Profile_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Profile_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void OrdersButton_Click(object sender, EventArgs e)
+        {
+            OpenNewWIndow(new OrdersTable());
+        }
+
+        private void ArchiveButton_Click(object sender, EventArgs e)
+        {
+            //  как-то пометить, что это архив
+            OpenNewWIndow(new OrdersTable());
+        }
+
+        private void ClientsButton_Click(object sender, EventArgs e)
+        {
+            OpenNewWIndow(new ClientForm());
+        }
+
+        private void ServicesButton_Click(object sender, EventArgs e)
+        {
+            OpenNewWIndow(new ServiceForm());
         }
     }
 }

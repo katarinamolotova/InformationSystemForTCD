@@ -183,6 +183,7 @@ namespace InformationSystemForTCD.forms
             this.ServicesButton.TabIndex = 10;
             this.ServicesButton.Text = "Услуги";
             this.ServicesButton.UseVisualStyleBackColor = true;
+            this.ServicesButton.Click += new System.EventHandler(this.ServicesButton_Click);
             // 
             // ClientsButton
             // 
@@ -192,6 +193,7 @@ namespace InformationSystemForTCD.forms
             this.ClientsButton.TabIndex = 9;
             this.ClientsButton.Text = "Клиенты";
             this.ClientsButton.UseVisualStyleBackColor = true;
+            this.ClientsButton.Click += new System.EventHandler(this.ClientsButton_Click);
             // 
             // ArchiveButton
             // 
@@ -201,6 +203,7 @@ namespace InformationSystemForTCD.forms
             this.ArchiveButton.TabIndex = 8;
             this.ArchiveButton.Text = "Архив";
             this.ArchiveButton.UseVisualStyleBackColor = true;
+            this.ArchiveButton.Click += new System.EventHandler(this.ArchiveButton_Click);
             // 
             // OrdersButton
             // 
@@ -210,6 +213,7 @@ namespace InformationSystemForTCD.forms
             this.OrdersButton.TabIndex = 7;
             this.OrdersButton.Text = "Все заказы";
             this.OrdersButton.UseVisualStyleBackColor = true;
+            this.OrdersButton.Click += new System.EventHandler(this.OrdersButton_Click);
             // 
             // Profile
             // 
@@ -223,6 +227,8 @@ namespace InformationSystemForTCD.forms
             this.MinimumSize = new System.Drawing.Size(569, 544);
             this.Name = "Profile";
             this.Text = "Профиль";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Profile_FormClosed);
+            this.Load += new System.EventHandler(this.Profile_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ProfileImage)).EndInit();
             this.Information.ResumeLayout(false);
             this.Information.PerformLayout();

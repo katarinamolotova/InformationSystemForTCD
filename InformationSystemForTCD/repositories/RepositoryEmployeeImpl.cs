@@ -12,6 +12,8 @@ namespace InformationSystemForTCD.repositories
     class RepositoryEmployeeImpl : IRepository<models.Employee>
     {
         DB db = new DB();
+        MySqlDataAdapter adapter = new MySqlDataAdapter();
+        String tableName = "employee";
 
         public void Delete(Employee model)
         {
@@ -20,7 +22,7 @@ namespace InformationSystemForTCD.repositories
 
         public List<Employee> GetAll()
         {
-            DataTable result = DoQuery("select * from employee");
+            DataTable result = DoQuerySelect("select * from employee");
             List<Employee> employees = new List<Employee>();
 
             for (int i = 0; i < (int)result.Rows.Count; i++)
@@ -46,15 +48,37 @@ namespace InformationSystemForTCD.repositories
             throw new NotImplementedException();
         }
 
+        //  не работает
         public void Update(Employee model)
         {
-            throw new NotImplementedException();
+            /*
+             * DataSet dataSet = new DataSet();
+            dataSet.Tables[tableName].Rows[model.Id]["name"] = model.Name;
+            dataSet.Tables[tableName].Rows[model.Id]["login"] = model.Login;
+            dataSet.Tables[tableName].Rows[model.Id]["password"] = model.Password;
+             */
+            db.OpenConnection();
+            String query = $"update employee " +
+                $"set name = @name, " +
+                $"login = @login, " +
+                $"password = @password " +
+                $"where id = @id";
+            MySqlCommand command = new MySqlCommand();
+            command.Connection = db.GetConnection();
+            command.CommandText = query;
+            command.Parameters.Add("@name", MySqlDbType.VarChar).Value = model.Name;
+            command.Parameters.Add("@login", MySqlDbType.VarChar).Value = model.Login;
+            command.Parameters.Add("@password", MySqlDbType.VarChar).Value = model.Password;
+            command.Parameters.Add("@id", MySqlDbType.Int64).Value = model.Id;
+            command.ExecuteNonQuery();
+            db.CloseConnection();
+            //adapter.UpdateCommand = command;
+
         }
 
-        private DataTable DoQuery(String query)
+        private DataTable DoQuerySelect(String query)
         {
             DataTable table = new DataTable();
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
             MySqlCommand command = new MySqlCommand(query, db.GetConnection());
 
             adapter.SelectCommand = command;
