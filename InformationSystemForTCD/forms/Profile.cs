@@ -124,13 +124,13 @@ namespace InformationSystemForTCD.forms
 
         private void OrdersButton_Click(object sender, EventArgs e)
         {
-            OpenNewWIndow(new OrdersTable());
+            OpenNewWIndow(new OrdersTable(person));
         }
 
         private void ArchiveButton_Click(object sender, EventArgs e)
         {
             //  как-то пометить, что это архив
-            OpenNewWIndow(new OrdersTable());
+            OpenNewWIndow(new OrdersTable(person));
         }
 
         private void ClientsButton_Click(object sender, EventArgs e)

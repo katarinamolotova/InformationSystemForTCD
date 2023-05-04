@@ -15,7 +15,7 @@ namespace InformationSystemForTCD.forms
     public partial class OrdersTable : Form
     {
         Person person;
-        RepositoryOrderImpl repository = new RepositoryOrderImpl()
+        RepositoryOrderImpl repository = new RepositoryOrderImpl();
 
         public OrdersTable(Person person)
         {
