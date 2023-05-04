@@ -123,6 +123,7 @@ namespace InformationSystemForTCD
             this.MinimumSize = new System.Drawing.Size(470, 340);
             this.Name = "Authorization";
             this.Text = "Авторизация";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Authorization_FormClosed);
             this.Load += new System.EventHandler(this.Authorization_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

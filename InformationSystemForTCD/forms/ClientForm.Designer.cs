@@ -138,6 +138,7 @@ namespace InformationSystemForTCD.forms
             this.addButton.TabIndex = 10;
             this.addButton.Text = "Добавить";
             this.addButton.UseVisualStyleBackColor = false;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // exitButton
             // 
@@ -148,6 +149,7 @@ namespace InformationSystemForTCD.forms
             this.exitButton.TabIndex = 9;
             this.exitButton.Text = "Назад";
             this.exitButton.UseVisualStyleBackColor = false;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // ClientForm
             // 

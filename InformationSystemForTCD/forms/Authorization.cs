@@ -11,6 +11,7 @@ namespace InformationSystemForTCD
     public partial class Authorization : Form
     {
         RepositoryEmployeeImpl repositoryEmployee = new RepositoryEmployeeImpl();
+        RepositoryClientImpl repositoryClient = new RepositoryClientImpl();
 
         public Authorization()
         {
@@ -28,13 +29,23 @@ namespace InformationSystemForTCD
             String pass = PasswordBox.Text;
 
             //  enter as client
-            List<Employee> employees = repositoryEmployee.GetAll()
-                .Where(employee => employee.Login == login && employee.Password == pass)
+            List<Person> people = repositoryEmployee.GetAll()
+                .Where(person => person.Login == login && person.Password == pass)
                 .ToList();
+            List<Client> clients = new List<Client>();
+
+            if (people.Count == 0)
+            {
+                 clients = repositoryClient.GetAll()
+                .Where(person => person.Login == login && person.Password == pass)
+                .ToList();
+            }
 
             //  передать объект сотрудника или клиента
-            if (employees.Count > 0)
-                OpenNewWIndow(employees[0]);
+            if (people.Count > 0)
+                OpenNewWIndow(people[0]);
+            else if (clients.Count > 0)
+                OpenNewWIndow(clients[0]);
             else
                 MessageBox.Show("Нет пользователя с такими данными! Убедитесь, что вы правильно ввели логин и пароль.", "Внимание!");
         }
@@ -52,6 +63,11 @@ namespace InformationSystemForTCD
             this.Hide();
             Profile profile = new Profile(person);
             profile.Show();
+        }
+
+        private void Authorization_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

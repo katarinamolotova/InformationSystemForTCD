@@ -80,6 +80,7 @@ namespace InformationSystemForTCD.forms
             // 
             this.AddressBox.Location = new System.Drawing.Point(22, 158);
             this.AddressBox.Name = "AddressBox";
+            this.AddressBox.PlaceholderText = "Адрес";
             this.AddressBox.Size = new System.Drawing.Size(218, 27);
             this.AddressBox.TabIndex = 4;
             // 
@@ -87,6 +88,7 @@ namespace InformationSystemForTCD.forms
             // 
             this.NumberBox.Location = new System.Drawing.Point(22, 191);
             this.NumberBox.Name = "NumberBox";
+            this.NumberBox.PlaceholderText = "Номер";
             this.NumberBox.Size = new System.Drawing.Size(218, 27);
             this.NumberBox.TabIndex = 5;
             // 
@@ -95,6 +97,7 @@ namespace InformationSystemForTCD.forms
             this.PasswordBox.Location = new System.Drawing.Point(22, 59);
             this.PasswordBox.Name = "PasswordBox";
             this.PasswordBox.PasswordChar = '•';
+            this.PasswordBox.PlaceholderText = "Пароль";
             this.PasswordBox.Size = new System.Drawing.Size(218, 27);
             this.PasswordBox.TabIndex = 1;
             // 
@@ -102,6 +105,7 @@ namespace InformationSystemForTCD.forms
             // 
             this.NameBox.Location = new System.Drawing.Point(22, 92);
             this.NameBox.Name = "NameBox";
+            this.NameBox.PlaceholderText = "Имя";
             this.NameBox.Size = new System.Drawing.Size(218, 27);
             this.NameBox.TabIndex = 2;
             // 
@@ -109,6 +113,7 @@ namespace InformationSystemForTCD.forms
             // 
             this.EmailBox.Location = new System.Drawing.Point(22, 224);
             this.EmailBox.Name = "EmailBox";
+            this.EmailBox.PlaceholderText = "Email";
             this.EmailBox.Size = new System.Drawing.Size(218, 27);
             this.EmailBox.TabIndex = 6;
             // 
@@ -116,6 +121,7 @@ namespace InformationSystemForTCD.forms
             // 
             this.SurnameBox.Location = new System.Drawing.Point(22, 125);
             this.SurnameBox.Name = "SurnameBox";
+            this.SurnameBox.PlaceholderText = "Фамилия";
             this.SurnameBox.Size = new System.Drawing.Size(218, 27);
             this.SurnameBox.TabIndex = 3;
             // 
@@ -123,6 +129,7 @@ namespace InformationSystemForTCD.forms
             // 
             this.LoginBox.Location = new System.Drawing.Point(22, 26);
             this.LoginBox.Name = "LoginBox";
+            this.LoginBox.PlaceholderText = "Логин";
             this.LoginBox.Size = new System.Drawing.Size(218, 27);
             this.LoginBox.TabIndex = 0;
             // 

@@ -15,6 +15,7 @@ namespace InformationSystemForTCD.forms
     public partial class Profile : Form
     {
         RepositoryEmployeeImpl repositoryEmployee = new RepositoryEmployeeImpl();
+        RepositoryClientImpl repositoryClient = new RepositoryClientImpl();
         private Person person;
         public Profile(Person person)
         {
@@ -38,18 +39,18 @@ namespace InformationSystemForTCD.forms
 
         private void ChangeVisible()
         {
-            if (person is Employee)
+            if (person is Client)
+            {
+                ArchiveButton.Visible = false;
+                ClientsButton.Visible = false;
+                ServicesButton.Visible = false;
+            }
+            else
             {
                 SurnameBox.Visible = false;
                 EmailBox.Visible = false;
                 NumberBox.Visible = false;
                 AddressBox.Visible = false;
-            }
-            else
-            {
-                ArchiveButton.Visible = false;
-                ClientsButton.Visible = false;
-                ServicesButton.Visible = false;
             }
         }
 
@@ -82,13 +83,23 @@ namespace InformationSystemForTCD.forms
             {
                 try
                 {
-
                     person.Name = NameBox.Text;
                     person.Login = LoginBox.Text;
                     person.Password = PasswordBox.Text;
-                    repositoryEmployee.Update(person as Employee);
+                    if (person is Client)
+                    {
+                        Client client = person as Client;
+                        client.Address = AddressBox.Text;
+                        client.Email = EmailBox.Text;
+                        client.Surname = SurnameBox.Text;
+                        client.Number = NumberBox.Text;
+                        repositoryClient.Update(client);
+                    } 
+                    else
+                    {
+                        repositoryEmployee.Update(person as Employee);
+                    }
                     MessageBox.Show("Данные успешно изменены", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //  client
                 }
                 catch (Exception ex)
                 {
@@ -124,7 +135,7 @@ namespace InformationSystemForTCD.forms
 
         private void ClientsButton_Click(object sender, EventArgs e)
         {
-            OpenNewWIndow(new ClientForm());
+            OpenNewWIndow(new ClientForm(person));
         }
 
         private void ServicesButton_Click(object sender, EventArgs e)
